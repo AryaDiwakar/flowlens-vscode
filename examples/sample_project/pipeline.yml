@@ -1,0 +1,11 @@
+name: customer-refresh
+tasks:
+  - name: normalize
+    script: jobs/normalize.py
+    inputs: [customers]
+    outputs: [normalized_customers]
+  - name: summarize
+    depends_on: [normalize]
+    script: transformations/customer_summary.sql
+    inputs: [normalized_customers]
+    outputs: [customer_summary]

@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run FlowLens on sample project",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}/apps/extension",
+        "${workspaceFolder}/examples/sample_project"
+      ],
+      "outFiles": ["${workspaceFolder}/apps/extension/out/**/*.js"],
+      "preLaunchTask": "flowlens-build"
+    }
+  ]
+}

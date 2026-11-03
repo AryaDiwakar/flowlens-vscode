@@ -1,0 +1,5 @@
+customer_id,email,country,age
+1,ada@example.test,US,38
+2,grace@example.test,CA,41
+3,linus@example.test,US,25
+4,broken-email,XX,145

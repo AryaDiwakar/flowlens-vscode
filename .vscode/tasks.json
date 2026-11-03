@@ -1,0 +1,13 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "flowlens-build",
+      "type": "shell",
+      "command": "npm",
+      "args": ["--prefix", "apps/extension", "run", "vscode:prepublish"],
+      "problemMatcher": ["$tsc"],
+      "group": { "kind": "build", "isDefault": false }
+    }
+  ]
+}

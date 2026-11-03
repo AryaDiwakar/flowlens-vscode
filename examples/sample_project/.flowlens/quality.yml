@@ -1,0 +1,16 @@
+dataset: customers.csv
+checks:
+  - column: customer_id
+    rule: not_null
+  - column: customer_id
+    rule: unique
+  - column: country
+    rule: accepted_values
+    values: [US, CA]
+  - column: age
+    rule: range
+    min: 0
+    max: 120
+  - column: email
+    rule: regex
+    pattern: '^[^@]+@[^@]+\.[^@]+$'

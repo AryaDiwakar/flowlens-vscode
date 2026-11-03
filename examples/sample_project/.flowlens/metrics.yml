@@ -1,0 +1,6 @@
+dataset: data/customers.csv
+metrics:
+  - name: customer_count
+    sql: SELECT COUNT(*) FROM dataset
+  - name: average_customer_age
+    sql: SELECT AVG(age) FROM dataset

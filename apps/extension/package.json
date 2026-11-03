@@ -1,0 +1,63 @@
+{
+  "name": "flowlens",
+  "displayName": "FlowLens",
+  "description": "Local-first data pipeline intelligence and debugging",
+  "version": "0.1.0",
+  "publisher": "flowlens",
+  "engines": { "vscode": "^1.85.0" },
+  "categories": ["Other", "Visualization"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      { "command": "flowlens.analyzeWorkspace", "title": "FlowLens: Analyze Workspace" },
+      { "command": "flowlens.showDashboard", "title": "FlowLens: Show Dashboard" },
+      { "command": "flowlens.profileFile", "title": "FlowLens: Profile Dataset" },
+      { "command": "flowlens.validateDataset", "title": "FlowLens: Validate Dataset" },
+      { "command": "flowlens.inspectImpact", "title": "FlowLens: Inspect Pipeline Impact" },
+      { "command": "flowlens.investigateDataset", "title": "FlowLens: Investigate Dataset" },
+      { "command": "flowlens.schemaDiff", "title": "FlowLens: Compare Schema Snapshot" },
+      { "command": "flowlens.showHistory", "title": "FlowLens: Show Analysis History" },
+      { "command": "flowlens.setupBackend", "title": "FlowLens: Set Up Local Python Backend" },
+      { "command": "flowlens.exportValidationReport", "title": "FlowLens: Export Latest Validation Report" },
+      { "command": "flowlens.evaluateMetrics", "title": "FlowLens: Evaluate Configured KPIs" }
+    ],
+    "viewsContainers": { "activitybar": [{ "id": "flowlens", "title": "FlowLens", "icon": "media/icon.svg" }] },
+    "views": { "flowlens": [{ "id": "flowlens.explorer", "name": "Workspace Intelligence" }] },
+    "configuration": {
+      "title": "FlowLens",
+      "properties": {
+        "flowlens.pythonPath": { "type": "string", "default": "python3", "description": "Python interpreter with FlowLens backend dependencies installed." },
+        "flowlens.sqlDialect": { "type": "string", "default": "", "description": "SQLGlot dialect name, for example postgres, bigquery, or snowflake." },
+        "flowlens.qualityConfig": { "type": "string", "default": ".flowlens/quality.yml", "description": "Workspace-relative YAML data quality rules file." },
+        "flowlens.autoRescan": { "type": "boolean", "default": true, "description": "Re-analyze after relevant workspace files change. Unchanged files are reused from the local scan cache." },
+        "flowlens.anomalySensitivity": { "type": "number", "default": 3.5, "minimum": 1, "maximum": 8, "description": "Robust z-score sensitivity for statistical anomaly signals (lower is more sensitive)." },
+        "flowlens.profileSampleRows": { "type": "integer", "default": 100000, "minimum": 1, "maximum": 2000000, "description": "Maximum first-N rows used for column-level dataset statistics." },
+        "flowlens.metricConfig": { "type": "string", "default": ".flowlens/metrics.yml", "description": "Workspace-relative YAML file defining read-only KPI queries." }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "watch": "tsc -w -p .",
+    "test": "npm run compile && node --test test/*.test.js && npm --prefix ../webview test",
+    "test:integration": "npm run vscode:prepublish && node test/runTest.js",
+    "webview:build": "npm --prefix ../webview run build",
+    "bundle:backend": "node scripts/copy-backend.js",
+    "vscode:prepublish": "npm run compile && npm run webview:build && npm run bundle:backend",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "22.13.10",
+    "@types/vscode": "1.85.0",
+    "@vscode/test-electron": "2.5.2",
+    "@vscode/vsce": "4.1.0",
+    "mocha": "12.0.3",
+    "typescript": "5.7.3"
+  },
+  "overrides": {
+    "minimatch": "11.0.1",
+    "glob": "14.0.3",
+    "serialize-javascript": "7.1.4"
+  }
+}

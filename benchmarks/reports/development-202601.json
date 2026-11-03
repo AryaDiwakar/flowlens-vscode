@@ -1,0 +1,132 @@
+{
+  "anomaly_detection": {
+    "f1": 1.0,
+    "false_negative": 0,
+    "false_positive": 0,
+    "false_positive_rate": 0.0,
+    "pr_auc_average_precision": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "true_positive": 2
+  },
+  "benchmark": "flowlens-synthetic-v1",
+  "configured_kpi": {
+    "baseline_median": 12351.3,
+    "baseline_observations": 5,
+    "flagged": true,
+    "name": "total_amount",
+    "observed": 49405.2
+  },
+  "data_quality": {
+    "checks": 3,
+    "failed_checks": 3,
+    "failed_rows_by_rule": {
+      "not_null": 1,
+      "range": 2,
+      "unique": 2
+    }
+  },
+  "limitations": [
+    "Synthetic fixtures only; these scores do not predict production accuracy.",
+    "Python memory is tracemalloc heap and excludes native DuckDB allocations.",
+    "Incremental latency measures a single modified SQL file in a warm process."
+  ],
+  "lineage_reconstruction": {
+    "expected_edges": 13,
+    "f1": 1.0,
+    "false_negative": 0,
+    "false_positive": 0,
+    "precision": 1.0,
+    "predicted_edges": 13,
+    "recall": 1.0,
+    "true_positive": 13
+  },
+  "profile_anomaly_signals": [
+    {
+      "classification": "statistical signal, not a confirmed failure",
+      "metric": "mean:value"
+    },
+    {
+      "classification": "statistical signal, not a confirmed failure",
+      "metric": "median:value"
+    },
+    {
+      "classification": "statistical signal, not a confirmed failure",
+      "metric": "standard_deviation:value"
+    },
+    {
+      "classification": "statistical signal, not a confirmed failure",
+      "metric": "q05:value"
+    },
+    {
+      "classification": "statistical signal, not a confirmed failure",
+      "metric": "q25:value"
+    },
+    {
+      "classification": "statistical signal, not a confirmed failure",
+      "metric": "q75:value"
+    },
+    {
+      "classification": "statistical signal, not a confirmed failure",
+      "metric": "q95:value"
+    },
+    {
+      "classification": "distribution comparison signal, not a confirmed failure",
+      "metric": "category_distribution:category"
+    },
+    {
+      "classification": "statistical signal, not a confirmed failure",
+      "metric": "null_percent:optional"
+    }
+  ],
+  "root_cause": {
+    "ground_truth_file": "bad_join.sql",
+    "mean_reciprocal_rank": 1.0,
+    "ranked_files": [
+      "bad_join.sql"
+    ],
+    "top1_localization_accuracy": 1.0,
+    "top3_localization_accuracy": 1.0
+  },
+  "schema_drift": {
+    "change_kinds": [
+      "column_added"
+    ],
+    "has_baseline": true
+  },
+  "seed": 202601,
+  "split": "development",
+  "sql_analysis": {
+    "f1": 1.0,
+    "false_negative": 0,
+    "false_positive": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "true_positive": 2
+  },
+  "system_performance": {
+    "cycle_detected": true,
+    "incremental_parsed_files": 1,
+    "incremental_reused_files": 10,
+    "incremental_scan_seconds": 0.0012125419998483267,
+    "initial_scan_python_peak_bytes": 193372,
+    "initial_scan_seconds": 0.008106959001452196,
+    "profile_seconds": 0.014298250000138069,
+    "profiled_columns": 2,
+    "profiled_rows": 250
+  },
+  "unresolved_dependency_mapping": {
+    "expected_unmapped_tables": [
+      "warehouse.absent_source"
+    ],
+    "f1": 1.0,
+    "false_negative": 0,
+    "false_positive": 0,
+    "precision": 1.0,
+    "predicted_unmapped_tables": [
+      "warehouse.absent_source"
+    ],
+    "recall": 1.0,
+    "true_positive": 1
+  }
+}
